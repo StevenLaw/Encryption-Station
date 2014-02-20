@@ -9,7 +9,7 @@ namespace Encryption_Station
     /// This class allows the dialogs to set multiple values for the hash item 
     /// in the file
     /// </summary>
-    class HashItem
+    public class HashItem
     {
         public string Title { get; set; }
         public string Algorithm { get; set; }
