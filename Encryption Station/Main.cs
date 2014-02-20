@@ -12,6 +12,7 @@ namespace Encryption_Station
     public partial class Main : Form
     {
         private string password;
+        private bool changed; // Keeps track of whether or not the file has changed.
 
         public Main()
         {
@@ -29,9 +30,16 @@ namespace Encryption_Station
             this.Close();
         }
 
+        private void addCryptButton_Click(object sender, EventArgs e)
+        {
+            AddEncrypted addEnc = new AddEncrypted();
+            DialogResult result = addEnc.ShowDialog();
+        }
+
         private void addHashButton_Click(object sender, EventArgs e)
         {
-
+            AddHash addHash = new AddHash();
+            DialogResult result = addHash.ShowDialog();
         }
 
         private void genKeyButton_Click(object sender, EventArgs e)

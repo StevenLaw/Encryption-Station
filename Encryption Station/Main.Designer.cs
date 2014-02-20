@@ -202,6 +202,7 @@
             this.addCryptButton.TabIndex = 4;
             this.addCryptButton.Text = "Add Encrypted";
             this.addCryptButton.UseVisualStyleBackColor = true;
+            this.addCryptButton.Click += new System.EventHandler(this.addCryptButton_Click);
             // 
             // Main
             // 

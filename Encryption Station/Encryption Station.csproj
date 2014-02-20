@@ -52,12 +52,27 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddEncrypted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEncrypted.Designer.cs">
+      <DependentUpon>AddEncrypted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddHash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddHash.Designer.cs">
+      <DependentUpon>AddHash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EncryptedItem.cs" />
+    <Compile Include="EncryptionAgent.cs" />
     <Compile Include="GenerateKey.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GenerateKey.Designer.cs">
       <DependentUpon>GenerateKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="HashItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,8 +87,15 @@
     <Compile Include="SetPassword.Designer.cs">
       <DependentUpon>SetPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimpleAES.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEncrypted.resx">
+      <DependentUpon>AddEncrypted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddHash.resx">
+      <DependentUpon>AddHash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerateKey.resx">
       <DependentUpon>GenerateKey.cs</DependentUpon>

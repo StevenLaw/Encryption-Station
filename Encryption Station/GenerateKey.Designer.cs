@@ -65,6 +65,8 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.BackColor = System.Drawing.SystemColors.Menu;
+            this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
             "Uppercase (A-Z)",
@@ -73,7 +75,7 @@
             "Special Characters (@%+\\/\'!#$^?:,~-_)"});
             this.checkedListBox1.Location = new System.Drawing.Point(116, 38);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(215, 64);
+            this.checkedListBox1.Size = new System.Drawing.Size(215, 60);
             this.checkedListBox1.TabIndex = 2;
             // 
             // label2

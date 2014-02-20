@@ -105,7 +105,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SetPassword";
-            this.Text = "SetPassword";
+            this.Text = "Set Password";
             this.ResumeLayout(false);
             this.PerformLayout();
 
