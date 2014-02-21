@@ -64,5 +64,16 @@ namespace Encryption_Station
                 }
             }
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewFile newFile = new NewFile();
+            DialogResult result = newFile.ShowDialog();
+            itemTree.Enabled = true;
+            genKeyButton.Enabled = true;
+            itemTree.Nodes.Clear();
+            
+            itemTree.Nodes.Add("Root");
+        }
     }
 }

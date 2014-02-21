@@ -56,21 +56,28 @@
             // 
             // passwordTxt
             // 
+            this.passwordTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.passwordTxt.Location = new System.Drawing.Point(109, 12);
             this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(100, 20);
+            this.passwordTxt.Size = new System.Drawing.Size(192, 20);
             this.passwordTxt.TabIndex = 2;
+            this.passwordTxt.UseSystemPasswordChar = true;
             // 
             // confirmTxt
             // 
+            this.confirmTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.confirmTxt.Location = new System.Drawing.Point(109, 36);
             this.confirmTxt.Name = "confirmTxt";
-            this.confirmTxt.Size = new System.Drawing.Size(100, 20);
+            this.confirmTxt.Size = new System.Drawing.Size(192, 20);
             this.confirmTxt.TabIndex = 3;
+            this.confirmTxt.UseSystemPasswordChar = true;
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(133, 62);
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Location = new System.Drawing.Point(225, 62);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
@@ -80,8 +87,9 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(52, 62);
+            this.cancelButton.Location = new System.Drawing.Point(144, 62);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 6;
@@ -94,7 +102,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(221, 98);
+            this.ClientSize = new System.Drawing.Size(313, 98);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.confirmTxt);

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +48,7 @@
             this.genKeyButton = new System.Windows.Forms.Button();
             this.addHashButton = new System.Windows.Forms.Button();
             this.addCryptButton = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +84,7 @@
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -166,14 +170,19 @@
             this.itemTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemTree.Enabled = false;
+            this.itemTree.ImageIndex = 0;
+            this.itemTree.ImageList = this.imageList1;
             this.itemTree.Location = new System.Drawing.Point(12, 27);
             this.itemTree.Name = "itemTree";
+            this.itemTree.SelectedImageIndex = 0;
             this.itemTree.Size = new System.Drawing.Size(484, 308);
             this.itemTree.TabIndex = 1;
             // 
             // genKeyButton
             // 
             this.genKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.genKeyButton.Enabled = false;
             this.genKeyButton.Location = new System.Drawing.Point(415, 341);
             this.genKeyButton.Name = "genKeyButton";
             this.genKeyButton.Size = new System.Drawing.Size(81, 23);
@@ -185,6 +194,7 @@
             // addHashButton
             // 
             this.addHashButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addHashButton.Enabled = false;
             this.addHashButton.Location = new System.Drawing.Point(334, 341);
             this.addHashButton.Name = "addHashButton";
             this.addHashButton.Size = new System.Drawing.Size(75, 23);
@@ -196,6 +206,7 @@
             // addCryptButton
             // 
             this.addCryptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addCryptButton.Enabled = false;
             this.addCryptButton.Location = new System.Drawing.Point(235, 341);
             this.addCryptButton.Name = "addCryptButton";
             this.addCryptButton.Size = new System.Drawing.Size(93, 23);
@@ -203,6 +214,16 @@
             this.addCryptButton.Text = "Add Encrypted";
             this.addCryptButton.UseVisualStyleBackColor = true;
             this.addCryptButton.Click += new System.EventHandler(this.addCryptButton_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "iconmonstr-home-4-icon-16.png");
+            this.imageList1.Images.SetKeyName(1, "iconmonstr-key-icon-16.png");
+            this.imageList1.Images.SetKeyName(2, "iconmonstr-link-3-icon-16.png");
+            this.imageList1.Images.SetKeyName(3, "iconmonstr-lock-icon-16.png");
+            this.imageList1.Images.SetKeyName(4, "iconmonstr-menu-10-icon-16.png");
             // 
             // Main
             // 
@@ -245,6 +266,7 @@
         private System.Windows.Forms.Button addHashButton;
         private System.Windows.Forms.Button addCryptButton;
         private System.Windows.Forms.ToolStripMenuItem setPasswordToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

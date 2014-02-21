@@ -30,7 +30,7 @@
         {
             this.lengthNUD = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.charactersChk = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -63,20 +63,35 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Length";
             // 
-            // checkedListBox1
+            // charactersChk
             // 
-            this.checkedListBox1.BackColor = System.Drawing.SystemColors.Menu;
-            this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.charactersChk.BackColor = System.Drawing.SystemColors.Menu;
+            this.charactersChk.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.charactersChk.FormattingEnabled = true;
+            this.charactersChk.Items.AddRange(new object[] {
             "Uppercase (A-Z)",
             "Lowercase (a-z)",
             "Numbers (0-9)",
-            "Special Characters (@%+\\/\'!#$^?:,~-_)"});
-            this.checkedListBox1.Location = new System.Drawing.Point(116, 38);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(215, 60);
-            this.checkedListBox1.TabIndex = 2;
+            "@",
+            "%",
+            "+",
+            "\\",
+            "/",
+            "\'",
+            "!",
+            "#",
+            "$",
+            "^",
+            "?",
+            ":",
+            ",",
+            "~",
+            "-",
+            "_"});
+            this.charactersChk.Location = new System.Drawing.Point(116, 38);
+            this.charactersChk.Name = "charactersChk";
+            this.charactersChk.Size = new System.Drawing.Size(215, 60);
+            this.charactersChk.TabIndex = 2;
             // 
             // label2
             // 
@@ -118,7 +133,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.charactersChk);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lengthNUD);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -136,7 +151,7 @@
 
         private System.Windows.Forms.NumericUpDown lengthNUD;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox charactersChk;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
