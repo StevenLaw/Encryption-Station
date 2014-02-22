@@ -73,13 +73,16 @@ namespace Encryption_Station
             {
                 EncryptionAgent agent;
                 //This chooses alternative agents
-                if (algorithmCmb.SelectedText.Equals("AES"))
+                if (algorithmCmb.SelectedItem.ToString().Equals("AES"))
+                {
                     agent = new AesAgent(key);
-                else
-                    agent = new AesAgent(key);
-                cipher = agent.encrypt(textTxt.Text);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                    cipher = agent.encrypt(textTxt.Text);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else //This code should never execute
+                    MessageBox.Show("Please set an algorithm", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
             }
         }
     }

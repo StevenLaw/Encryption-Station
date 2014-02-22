@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.workLabel = new System.Windows.Forms.Label();
             this.algorithmCmb = new System.Windows.Forms.ComboBox();
             this.textTxt = new System.Windows.Forms.TextBox();
             this.workFactorNmb = new System.Windows.Forms.NumericUpDown();
@@ -38,7 +38,10 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.titleTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.saltSizeLabel = new System.Windows.Forms.Label();
+            this.saltSizeNmb = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.workFactorNmb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saltSizeNmb)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,27 +62,32 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Text";
             // 
-            // label3
+            // workLabel
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 282);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Work Factor";
+            this.workLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.workLabel.AutoSize = true;
+            this.workLabel.Enabled = false;
+            this.workLabel.Location = new System.Drawing.Point(146, 282);
+            this.workLabel.Name = "workLabel";
+            this.workLabel.Size = new System.Drawing.Size(66, 13);
+            this.workLabel.TabIndex = 2;
+            this.workLabel.Text = "Work Factor";
             // 
             // algorithmCmb
             // 
             this.algorithmCmb.FormattingEnabled = true;
             this.algorithmCmb.Items.AddRange(new object[] {
-            "SHA-1",
+            "SHA1",
+            "SHA256",
+            "SHA384",
+            "SHA512",
             "MD5",
             "BCrypt"});
             this.algorithmCmb.Location = new System.Drawing.Point(84, 9);
             this.algorithmCmb.Name = "algorithmCmb";
             this.algorithmCmb.Size = new System.Drawing.Size(121, 21);
             this.algorithmCmb.TabIndex = 3;
+            this.algorithmCmb.SelectedIndexChanged += new System.EventHandler(this.algorithmCmb_SelectedIndexChanged);
             // 
             // textTxt
             // 
@@ -95,10 +103,26 @@
             // workFactorNmb
             // 
             this.workFactorNmb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.workFactorNmb.Location = new System.Drawing.Point(84, 280);
+            this.workFactorNmb.Enabled = false;
+            this.workFactorNmb.Location = new System.Drawing.Point(218, 280);
+            this.workFactorNmb.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.workFactorNmb.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             this.workFactorNmb.Name = "workFactorNmb";
-            this.workFactorNmb.Size = new System.Drawing.Size(120, 20);
+            this.workFactorNmb.Size = new System.Drawing.Size(35, 20);
             this.workFactorNmb.TabIndex = 5;
+            this.workFactorNmb.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             // 
             // okButton
             // 
@@ -141,6 +165,27 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Title";
             // 
+            // saltSizeLabel
+            // 
+            this.saltSizeLabel.AutoSize = true;
+            this.saltSizeLabel.Location = new System.Drawing.Point(12, 282);
+            this.saltSizeLabel.Name = "saltSizeLabel";
+            this.saltSizeLabel.Size = new System.Drawing.Size(48, 13);
+            this.saltSizeLabel.TabIndex = 10;
+            this.saltSizeLabel.Text = "Salt Size";
+            // 
+            // saltSizeNmb
+            // 
+            this.saltSizeNmb.Location = new System.Drawing.Point(85, 280);
+            this.saltSizeNmb.Maximum = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.saltSizeNmb.Name = "saltSizeNmb";
+            this.saltSizeNmb.Size = new System.Drawing.Size(55, 20);
+            this.saltSizeNmb.TabIndex = 11;
+            // 
             // AddHash
             // 
             this.AcceptButton = this.okButton;
@@ -148,6 +193,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(534, 312);
+            this.Controls.Add(this.saltSizeNmb);
+            this.Controls.Add(this.saltSizeLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.titleTxt);
             this.Controls.Add(this.cancelButton);
@@ -155,14 +202,16 @@
             this.Controls.Add(this.workFactorNmb);
             this.Controls.Add(this.textTxt);
             this.Controls.Add(this.algorithmCmb);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.workLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(395, 150);
             this.Name = "AddHash";
             this.Text = "Add Hash";
+            this.Load += new System.EventHandler(this.AddHash_Load);
             ((System.ComponentModel.ISupportInitialize)(this.workFactorNmb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saltSizeNmb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,7 +221,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label workLabel;
         private System.Windows.Forms.ComboBox algorithmCmb;
         private System.Windows.Forms.TextBox textTxt;
         private System.Windows.Forms.NumericUpDown workFactorNmb;
@@ -180,5 +229,7 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox titleTxt;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label saltSizeLabel;
+        private System.Windows.Forms.NumericUpDown saltSizeNmb;
     }
 }

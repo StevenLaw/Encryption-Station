@@ -51,6 +51,17 @@ namespace Encryption_Station
         {
             AddHash addHash = new AddHash();
             DialogResult result = addHash.ShowDialog();
+            if (result.Equals(DialogResult.OK))
+            {
+                //Add the key to the tree view
+                TreeItem hash = addHash.getHashItem();
+                TreeNode node = new TreeNode(hash.Text, 2, 2);
+                node.Tag = hash;
+                itemTree.SelectedNode.Nodes.Add(node);
+                //Set changed to true to indicate that the file has changed
+                changed = true;
+                itemTree.SelectedNode.Expand();
+            }
         }
 
         /// <summary>
@@ -148,7 +159,7 @@ namespace Encryption_Station
                 {
                     //Add the Encrypted item to the tree view
                     TreeItem cipher = addEnc.getCipher();
-                    TreeNode node = new TreeNode(cipher.Text, 1, 1);
+                    TreeNode node = new TreeNode(cipher.Text, 3, 3);
                     node.Tag = cipher;
                     itemTree.SelectedNode.Nodes.Add(node);
                     //Set changed to true to indicate that the file has changed
@@ -159,61 +170,115 @@ namespace Encryption_Station
         }
 
         /// <summary>
-        /// Change which buttons are enabled depending on which tree node is selectec
+        /// Handles the AfterSelect event of the itemTree control.  Controls which controls are active.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="TreeViewEventArgs"/> instance containing the event data.</param>
         private void itemTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (itemTree.SelectedNode != null)
             {
-                genKeyButton.Enabled = true;
-                addHashButton.Enabled = true;
+                //View delete menu items
+                viewToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+                //Move menu items
+                moveUpToolStripMenuItem.Enabled = true;
+                moveDownToolStripMenuItem.Enabled = true;
                 TreeItem item = (TreeItem)itemTree.SelectedNode.Tag;
                 switch (item.Type)
                 {
                     case NodeType.Root:
+                        //Gen add buttons
                         genKeyButton.Enabled = true;
-                        generateKeyToolStripMenuItem.Enabled = true;
                         addKeyButton.Enabled = true;
-                        addEncryptedToolStripMenuItem.Enabled = true;
                         addHashButton.Enabled = true;
-                        addHashToolStripMenuItem.Enabled = true;
                         addCryptButton.Enabled = false;
+                        //Gen add menu items
+                        generateKeyToolStripMenuItem.Enabled = true;
+                        addKeyToolStripMenuItem.Enabled = true;
+                        addHashToolStripMenuItem.Enabled = true;
                         addEncryptedToolStripMenuItem.Enabled = false;
+                        //Edit menu item
+                        editItemToolStripMenuItem.Enabled = false;
                         break;
                     case NodeType.Key:
+                        //Gen add buttons
                         genKeyButton.Enabled = false;
-                        generateKeyToolStripMenuItem.Enabled = false;
                         addKeyButton.Enabled = false;
-                        addEncryptedToolStripMenuItem.Enabled = false;
                         addHashButton.Enabled = false;
-                        addHashToolStripMenuItem.Enabled = false;
                         addCryptButton.Enabled = true;
+                        //Gen add menu items
+                        generateKeyToolStripMenuItem.Enabled = false;
+                        addKeyToolStripMenuItem.Enabled = true;
+                        addHashToolStripMenuItem.Enabled = false;
                         addEncryptedToolStripMenuItem.Enabled = true;
+                        //Edit menu item
+                        editItemToolStripMenuItem.Enabled = true;
+                        break;
+                    case NodeType.Cipher:
+                        //Gen add buttons
+                        genKeyButton.Enabled = false;
+                        addKeyButton.Enabled = false;
+                        addHashButton.Enabled = false;
+                        addCryptButton.Enabled = false;
+                        //Gen add menu items
+                        generateKeyToolStripMenuItem.Enabled = false;
+                        addKeyToolStripMenuItem.Enabled = false;
+                        addHashToolStripMenuItem.Enabled = false;
+                        addEncryptedToolStripMenuItem.Enabled = false;
+                        //Edit menu item
+                        editItemToolStripMenuItem.Enabled = true;
+                        break;
+                    case NodeType.Hash:
+                        //Gen add buttons
+                        genKeyButton.Enabled = false;
+                        addKeyButton.Enabled = false;
+                        addHashButton.Enabled = false;
+                        addCryptButton.Enabled = false;
+                        //Gen add menu items
+                        generateKeyToolStripMenuItem.Enabled = false;
+                        addKeyToolStripMenuItem.Enabled = false;
+                        addHashToolStripMenuItem.Enabled = false;
+                        addEncryptedToolStripMenuItem.Enabled = false;
+                        //Edit menu item
+                        editItemToolStripMenuItem.Enabled = false;
                         break;
                     default:
+                        //Gen add buttons
                         genKeyButton.Enabled = false;
-                        generateKeyToolStripMenuItem.Enabled = false;
                         addKeyButton.Enabled = false;
-                        addEncryptedToolStripMenuItem.Enabled = false;
                         addHashButton.Enabled = false;
-                        addHashToolStripMenuItem.Enabled = false;
                         addCryptButton.Enabled = false;
+                        //Gen add menu items
+                        generateKeyToolStripMenuItem.Enabled = false;
+                        addKeyToolStripMenuItem.Enabled = false;
+                        addHashToolStripMenuItem.Enabled = false;
                         addEncryptedToolStripMenuItem.Enabled = false;
+                        //Edit menu item
+                        editItemToolStripMenuItem.Enabled = false;
                         break;
                 }
             }
             else
             {
+                //View delete menu items
+                viewToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+                //Move menu items
+                moveUpToolStripMenuItem.Enabled = false;
+                moveDownToolStripMenuItem.Enabled = false;
+                //Gen add buttons
                 genKeyButton.Enabled = false;
-                generateKeyToolStripMenuItem.Enabled = false;
                 addKeyButton.Enabled = false;
-                addEncryptedToolStripMenuItem.Enabled = false;
-                addHashButton.Enabled = false; ;
-                addHashToolStripMenuItem.Enabled = false;
+                addHashButton.Enabled = false;
                 addCryptButton.Enabled = false;
+                //Gen add menu items
+                generateKeyToolStripMenuItem.Enabled = false;
+                addKeyToolStripMenuItem.Enabled = false;
+                addHashToolStripMenuItem.Enabled = false;
                 addEncryptedToolStripMenuItem.Enabled = false;
+                //Edit menu item
+                editItemToolStripMenuItem.Enabled = false;
             }
         }
 
