@@ -11,11 +11,38 @@ namespace Encryption_Station
 {
     public partial class AddEncrypted : Form
     {
+        private string key;
+        private string cipher;
+
         public AddEncrypted()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Set the key used to encrypt the text.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        public void setKey(string key)
+        {
+            this.key = key;
+        }
+
+        public TreeItem getCipher()
+        {
+            return new TreeItem()
+            {
+                Title = titleTxt.Text,
+                Algorithm = algorithmCmb.SelectedItem.ToString(),
+                Value = cipher,
+                Type = NodeType.Cipher
+            };
+        }
+
+        /// <summary>
+        /// Retrieves the encrypted item
+        /// </summary>
+        /// <returns>The encrypted item</returns>
         public EncryptedItem getEncryptedItem()
         {
             return new EncryptedItem()
@@ -26,6 +53,11 @@ namespace Encryption_Station
             };
         }
 
+        private void AddEncrypted_Load(object sender, EventArgs e)
+        {
+            algorithmCmb.SelectedIndex = 0;
+        }
+
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -33,7 +65,22 @@ namespace Encryption_Station
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (textTxt.Text.Equals(""))
+            {
+                MessageBox.Show("Please enter some text to encrypt", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                EncryptionAgent agent;
+                //This chooses alternative agents
+                if (algorithmCmb.SelectedText.Equals("AES"))
+                    agent = new AesAgent(key);
+                else
+                    agent = new AesAgent(key);
+                cipher = agent.encrypt(textTxt.Text);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

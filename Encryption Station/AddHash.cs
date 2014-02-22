@@ -16,9 +16,9 @@ namespace Encryption_Station
             InitializeComponent();
         }
 
-        public HashItem getHashItem()
+        public TreeItem getHashItem()
         {
-            return new HashItem
+            return new TreeItem
             {
                 Algorithm = algorithmCmb.SelectedItem.ToString(),
                 Title = titleTxt.Text,

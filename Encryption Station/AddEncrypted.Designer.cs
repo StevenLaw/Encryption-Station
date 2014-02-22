@@ -136,6 +136,7 @@
             this.MinimumSize = new System.Drawing.Size(235, 155);
             this.Name = "AddEncrypted";
             this.Text = "AddEncrypted";
+            this.Load += new System.EventHandler(this.AddEncrypted_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

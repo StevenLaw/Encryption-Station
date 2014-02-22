@@ -64,6 +64,12 @@
     <Compile Include="AddHash.Designer.cs">
       <DependentUpon>AddHash.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddKey.Designer.cs">
+      <DependentUpon>AddKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="EncryptedItem.cs" />
     <Compile Include="EncryptionAgent.cs" />
     <Compile Include="GenerateKey.cs">
@@ -72,7 +78,7 @@
     <Compile Include="GenerateKey.Designer.cs">
       <DependentUpon>GenerateKey.cs</DependentUpon>
     </Compile>
-    <Compile Include="HashItem.cs" />
+    <Compile Include="TreeItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,7 @@
     <Compile Include="NewFile.Designer.cs">
       <DependentUpon>NewFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="NodeType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetPassword.cs">
@@ -93,7 +100,7 @@
     <Compile Include="SetPassword.Designer.cs">
       <DependentUpon>SetPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimpleAES.cs" />
+    <Compile Include="AesAgent.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddHash.resx">
       <DependentUpon>AddHash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddKey.resx">
+      <DependentUpon>AddKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerateKey.resx">
       <DependentUpon>GenerateKey.cs</DependentUpon>

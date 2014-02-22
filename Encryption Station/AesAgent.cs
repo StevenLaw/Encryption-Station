@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Encryption_Station
 {
-    public sealed class SimpleAES  : EncryptionAgent
+    public sealed class AesAgent  : EncryptionAgent
     {
         private const int keySize = 32;
         private const int IVSize = 16;
@@ -18,7 +18,7 @@ namespace Encryption_Station
         /// Initializes the class with the key
         /// </summary>
         /// <param name="key">The key to be used for encryption and decryption</param>
-        public SimpleAES(string key)
+        public AesAgent(string key)
         {
             this.key = key;
         }

@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Encryption_Station
 {
-    public partial class GenerateKey : Form
+    public partial class AddKey : Form
     {
         private string key;
         private string password;
 
-        public GenerateKey()
+        public AddKey()
         {
             InitializeComponent();
         }
@@ -31,30 +37,29 @@ namespace Encryption_Station
             return new TreeItem()
             {
                 Title = titleTxt.Text,
-                Length = (int)lengthNUD.Value,
+                Length = valueTxt.Text.Length,
                 Value = key,
                 Type = NodeType.Key
             };
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void okButton_Click(object sender, EventArgs e)
         {
-            // Generate the key
-            string availableChar ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-=+/";
-            key = "";
-            Random rnd = new Random();
-            for (int i = 0; i < lengthNUD.Value; i++) 
+            if (!valueTxt.Text.Equals(""))
             {
-                key += availableChar[rnd.Next(availableChar.Length)];
+                AesAgent aes = new AesAgent(password);
+                key = aes.encrypt(valueTxt.Text);
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
-            AesAgent aes = new AesAgent(password);
-            key = aes.encrypt(key);
-            this.DialogResult = DialogResult.OK;
+            else
+            {
+                MessageBox.Show("Please input a value for the key", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
