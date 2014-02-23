@@ -100,12 +100,6 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewFile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewFile.Designer.cs">
-      <DependentUpon>NewFile.cs</DependentUpon>
-    </Compile>
     <Compile Include="NodeType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +110,7 @@
       <DependentUpon>SetPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="AesAgent.cs" />
+    <Compile Include="XmlHelper.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,9 +131,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewFile.resx">
-      <DependentUpon>NewFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

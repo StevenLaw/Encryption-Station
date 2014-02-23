@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -11,6 +12,7 @@ namespace Encryption_Station
 {
     public partial class Main : Form
     {
+        private string filename;
         private string password;
         private bool changed; // Keeps track of whether or not the file has changed.
 
@@ -23,8 +25,10 @@ namespace Encryption_Station
         /// Create a new file
         /// </summary>
         private void newFile()
-        {
-            NewFile newFile = new NewFile();
+        {   
+            SaveFileDialog newFile = new SaveFileDialog();
+            newFile.Filter = "Xml Files (*.xml)|*.xml|Encryption Station Files (*.exs)|*.exs|All Files|"  +
+                "*.*";
             DialogResult result = newFile.ShowDialog();
             if (result.Equals(DialogResult.OK))
             {
@@ -34,9 +38,11 @@ namespace Encryption_Station
                 itemTree.Nodes.Clear();
 
                 //Set the name of the document and add to tree
+                filename = newFile.FileName;
+                FileInfo fileInfo = new FileInfo(filename);
                 TreeItem item = new TreeItem()
                 {
-                    Title = newFile.getTitle(),
+                    Title = Path.GetFileNameWithoutExtension(fileInfo.Name),
                     Type = NodeType.Root
                 };
                 TreeNode node = new TreeNode(item.Text);
@@ -254,7 +260,10 @@ namespace Encryption_Station
             }
         }
 
-        private void delete()
+        /// <summary>
+        /// Deletes the selected node.
+        /// </summary>
+        private void deleteNode()
         {
             if (itemTree.SelectedNode != null)
             {
@@ -270,6 +279,15 @@ namespace Encryption_Station
                 if (result.Equals(DialogResult.Yes))
                     itemTree.SelectedNode.Remove();
             }
+        }
+
+        /// <summary>
+        /// Saves the file.
+        /// </summary>
+        private void save()
+        {
+            XmlHelper xml = new XmlHelper(filename);
+            xml.createFile(itemTree.Nodes[0]);
         }
 
         /// <summary>
@@ -447,14 +465,19 @@ namespace Encryption_Station
             viewCheck();
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            save();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            delete();
+            deleteNode();
         }
     }
 }
