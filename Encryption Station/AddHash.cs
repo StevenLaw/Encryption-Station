@@ -19,14 +19,26 @@ namespace Encryption_Station
 
         public TreeItem getHashItem()
         {
-            return new TreeItem
+            if (algorithmCmb.SelectedItem.ToString().Equals("BCrypt"))
             {
-                Algorithm = algorithmCmb.SelectedItem.ToString(),
-                Title = titleTxt.Text,
-                Value = hash,
-                WorkFactor = (int)workFactorNmb.Value,
-                Type = NodeType.Hash
-            };
+                return new TreeItem
+                {
+                    Algorithm = algorithmCmb.SelectedItem.ToString(),
+                    Title = titleTxt.Text,
+                    Value = hash,
+                    WorkFactor = (int)workFactorNmb.Value,
+                    Type = NodeType.Hash
+                };
+            }
+            else
+                return new TreeItem
+                {
+                    Algorithm = algorithmCmb.SelectedItem.ToString(),
+                    Title = titleTxt.Text,
+                    Value = hash,
+                    SaltSize = (int)saltSizeNmb.Value,
+                    Type = NodeType.Hash
+                };
         }
 
         private void AddHash_Load(object sender, EventArgs e)
@@ -61,18 +73,20 @@ namespace Encryption_Station
         {
             HashingAgent agent;
             int saltVal = 0;
-            switch (algorithmCmb.SelectedItem.ToString())
+            string algorithm = algorithmCmb.SelectedItem.ToString();
+            switch (algorithm)
             {
-                //case "Sha1":
-                //    break;
-                //case "Sha256":
-                //    break;
-                //case "Sha384":
-                //    break;
-                //case "Sha512":
-                //    break;
-                //case "MD5":
-                //    break;
+                case "SHA1":
+                case "SHA256":
+                case "SHA384":
+                case "SHA512":
+                    agent = new ShaAgent(algorithm);
+                    saltVal = (int)saltSizeNmb.Value;
+                    break;
+                case "MD5":
+                    agent = new MD5Agent();
+                    saltVal = (int)saltSizeNmb.Value;
+                    break;
                 default: //Default is BCrypt
                     agent = new BCryptAgent();
                     saltVal = (int)workFactorNmb.Value;

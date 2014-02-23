@@ -76,6 +76,12 @@
       <DependentUpon>AddKey.cs</DependentUpon>
     </Compile>
     <Compile Include="BCryptAgent.cs" />
+    <Compile Include="CheckHash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckHash.Designer.cs">
+      <DependentUpon>CheckHash.cs</DependentUpon>
+    </Compile>
     <Compile Include="EncryptedItem.cs" />
     <Compile Include="EncryptionAgent.cs" />
     <Compile Include="GenerateKey.cs">
@@ -85,6 +91,8 @@
       <DependentUpon>GenerateKey.cs</DependentUpon>
     </Compile>
     <Compile Include="HashingAgent.cs" />
+    <Compile Include="MD5Agent.cs" />
+    <Compile Include="ShaAgent.cs" />
     <Compile Include="TreeItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -119,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddKey.resx">
       <DependentUpon>AddKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckHash.resx">
+      <DependentUpon>CheckHash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerateKey.resx">
       <DependentUpon>GenerateKey.cs</DependentUpon>

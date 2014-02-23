@@ -169,6 +169,11 @@ namespace Encryption_Station
             }
         }
 
+
+        /// <summary>
+        /// Checks if the hash matches a given value or views the unencrypted value of a key or encrypted 
+        /// item.
+        /// </summary>
         private void viewCheck()
         {
             if (itemTree.SelectedNode != null)
@@ -241,38 +246,29 @@ namespace Encryption_Station
                         }
                         break;
                     case NodeType.Hash:
-                        //Check hash
+                        CheckHash chkHash = new CheckHash();
+                        chkHash.setHash(item);
+                        chkHash.Show();
                         break;
-                //}
-                //if (item.Type.Equals(NodeType.Hash))
-                //{
-                //    //Check
-                //}
-                //else if (item.Type.Equals(NodeType.Cipher) || item.Type.Equals(NodeType.Key))
-                //{
-                //    if (password == null)
-                //    {
-                //        SetPassword setPass = new SetPassword();
-                //        DialogResult passResult = setPass.ShowDialog();
-                //        if (passResult.Equals(DialogResult.OK))
-                //        {
-                //            password = setPass.getPassword();
-                //        }
-                //    }
-                //    if (password != null)
-                //    {
-                //        EncryptionAgent agent;
-                //        switch (item.Algorithm)
-                //        {
-                //            default:
-                //                agent = new AesAgent(password);
-                //                break;
-                //        }
-                //        string clearText = agent.decrypt(item.Value);
-                //        MessageBox.Show(clearText + "\nWould you like to copy to the clipboard?", 
-                //            "Decrypted Value", MessageBoxButtons.YesNo);
-                //    }
                 }
+            }
+        }
+
+        private void delete()
+        {
+            if (itemTree.SelectedNode != null)
+            {
+                TreeItem item = (TreeItem)itemTree.SelectedNode.Tag;
+                int nodes = 1 + itemTree.SelectedNode.Nodes.Count;
+                DialogResult result = DialogResult.No;
+                if (nodes == 1)
+                    result = MessageBox.Show("Do you want to delete this item?", "Deleting Item", 
+                        MessageBoxButtons.YesNo);
+                else if (nodes > 1)
+                    result = MessageBox.Show("Do you want to delete these " + nodes + " items?", 
+                        "Deleting items", MessageBoxButtons.YesNo);
+                if (result.Equals(DialogResult.Yes))
+                    itemTree.SelectedNode.Remove();
             }
         }
 
@@ -308,8 +304,6 @@ namespace Encryption_Station
                         //View delete menu items
                         viewToolStripMenuItem.Enabled = false;
                         deleteToolStripMenuItem.Enabled = false;
-                        //Edit menu item
-                        editItemToolStripMenuItem.Enabled = false;
                         break;
                     case NodeType.Key:
                         //Gen add buttons
@@ -322,8 +316,6 @@ namespace Encryption_Station
                         addKeyToolStripMenuItem.Enabled = true;
                         addHashToolStripMenuItem.Enabled = false;
                         addEncryptedToolStripMenuItem.Enabled = true;
-                        //Edit menu item
-                        editItemToolStripMenuItem.Enabled = true;
                         break;
                     case NodeType.Cipher:
                         //Gen add buttons
@@ -336,8 +328,6 @@ namespace Encryption_Station
                         addKeyToolStripMenuItem.Enabled = false;
                         addHashToolStripMenuItem.Enabled = false;
                         addEncryptedToolStripMenuItem.Enabled = false;
-                        //Edit menu item
-                        editItemToolStripMenuItem.Enabled = true;
                         break;
                     case NodeType.Hash:
                         //Gen add buttons
@@ -350,8 +340,6 @@ namespace Encryption_Station
                         addKeyToolStripMenuItem.Enabled = false;
                         addHashToolStripMenuItem.Enabled = false;
                         addEncryptedToolStripMenuItem.Enabled = false;
-                        //Edit menu item
-                        editItemToolStripMenuItem.Enabled = false;
                         break;
                     default:
                         //Gen add buttons
@@ -364,8 +352,6 @@ namespace Encryption_Station
                         addKeyToolStripMenuItem.Enabled = false;
                         addHashToolStripMenuItem.Enabled = false;
                         addEncryptedToolStripMenuItem.Enabled = false;
-                        //Edit menu item
-                        editItemToolStripMenuItem.Enabled = false;
                         break;
                 }
             }
@@ -387,8 +373,6 @@ namespace Encryption_Station
                 addKeyToolStripMenuItem.Enabled = false;
                 addHashToolStripMenuItem.Enabled = false;
                 addEncryptedToolStripMenuItem.Enabled = false;
-                //Edit menu item
-                editItemToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -461,6 +445,16 @@ namespace Encryption_Station
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             viewCheck();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            delete();
         }
     }
 }

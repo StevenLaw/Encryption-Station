@@ -45,7 +45,7 @@
             this.cancelButton.Location = new System.Drawing.Point(366, 278);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 15;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -56,7 +56,7 @@
             this.okButton.Location = new System.Drawing.Point(447, 278);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 14;
+            this.okButton.TabIndex = 4;
             this.okButton.Text = "&OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
@@ -70,7 +70,7 @@
             this.textTxt.Multiline = true;
             this.textTxt.Name = "textTxt";
             this.textTxt.Size = new System.Drawing.Size(438, 208);
-            this.textTxt.TabIndex = 12;
+            this.textTxt.TabIndex = 3;
             // 
             // algorithmCmb
             // 
@@ -80,7 +80,7 @@
             this.algorithmCmb.Location = new System.Drawing.Point(84, 10);
             this.algorithmCmb.Name = "algorithmCmb";
             this.algorithmCmb.Size = new System.Drawing.Size(121, 21);
-            this.algorithmCmb.TabIndex = 11;
+            this.algorithmCmb.TabIndex = 1;
             // 
             // label2
             // 
@@ -88,7 +88,7 @@
             this.label2.Location = new System.Drawing.Point(12, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 13);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Text";
             // 
             // label1
@@ -97,7 +97,7 @@
             this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 8;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Algorithm";
             // 
             // titleTxt
@@ -107,7 +107,7 @@
             this.titleTxt.Location = new System.Drawing.Point(84, 38);
             this.titleTxt.Name = "titleTxt";
             this.titleTxt.Size = new System.Drawing.Size(438, 20);
-            this.titleTxt.TabIndex = 16;
+            this.titleTxt.TabIndex = 2;
             // 
             // label3
             // 
@@ -115,7 +115,7 @@
             this.label3.Location = new System.Drawing.Point(12, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 17;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Title";
             // 
             // AddEncrypted

@@ -59,7 +59,7 @@
             this.label2.Location = new System.Drawing.Point(12, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Text";
             // 
             // workLabel
@@ -70,7 +70,7 @@
             this.workLabel.Location = new System.Drawing.Point(146, 282);
             this.workLabel.Name = "workLabel";
             this.workLabel.Size = new System.Drawing.Size(66, 13);
-            this.workLabel.TabIndex = 2;
+            this.workLabel.TabIndex = 0;
             this.workLabel.Text = "Work Factor";
             // 
             // algorithmCmb
@@ -86,7 +86,7 @@
             this.algorithmCmb.Location = new System.Drawing.Point(84, 9);
             this.algorithmCmb.Name = "algorithmCmb";
             this.algorithmCmb.Size = new System.Drawing.Size(121, 21);
-            this.algorithmCmb.TabIndex = 3;
+            this.algorithmCmb.TabIndex = 1;
             this.algorithmCmb.SelectedIndexChanged += new System.EventHandler(this.algorithmCmb_SelectedIndexChanged);
             // 
             // textTxt
@@ -98,7 +98,7 @@
             this.textTxt.Multiline = true;
             this.textTxt.Name = "textTxt";
             this.textTxt.Size = new System.Drawing.Size(438, 209);
-            this.textTxt.TabIndex = 4;
+            this.textTxt.TabIndex = 3;
             // 
             // workFactorNmb
             // 
@@ -154,7 +154,7 @@
             this.titleTxt.Location = new System.Drawing.Point(84, 36);
             this.titleTxt.Name = "titleTxt";
             this.titleTxt.Size = new System.Drawing.Size(438, 20);
-            this.titleTxt.TabIndex = 8;
+            this.titleTxt.TabIndex = 2;
             // 
             // label4
             // 
@@ -162,7 +162,7 @@
             this.label4.Location = new System.Drawing.Point(12, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 9;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Title";
             // 
             // saltSizeLabel
@@ -171,7 +171,7 @@
             this.saltSizeLabel.Location = new System.Drawing.Point(12, 282);
             this.saltSizeLabel.Name = "saltSizeLabel";
             this.saltSizeLabel.Size = new System.Drawing.Size(48, 13);
-            this.saltSizeLabel.TabIndex = 10;
+            this.saltSizeLabel.TabIndex = 0;
             this.saltSizeLabel.Text = "Salt Size";
             // 
             // saltSizeNmb
@@ -184,7 +184,7 @@
             0});
             this.saltSizeNmb.Name = "saltSizeNmb";
             this.saltSizeNmb.Size = new System.Drawing.Size(55, 20);
-            this.saltSizeNmb.TabIndex = 11;
+            this.saltSizeNmb.TabIndex = 4;
             // 
             // AddHash
             // 
