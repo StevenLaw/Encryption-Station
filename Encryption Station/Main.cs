@@ -169,6 +169,113 @@ namespace Encryption_Station
             }
         }
 
+        private void viewCheck()
+        {
+            if (itemTree.SelectedNode != null)
+            {
+                TreeItem item = (TreeItem)itemTree.SelectedNode.Tag;
+                switch (item.Type)
+                {
+                    case NodeType.Key:
+                        //The node is a key so use password directly
+                        if (password == null)
+                        {
+                            SetPassword setPass = new SetPassword();
+                            DialogResult passResult = setPass.ShowDialog();
+                            if (passResult.Equals(DialogResult.OK))
+                            {
+                                password = setPass.getPassword();
+                            }
+                        }
+                        if (password != null)
+                        {
+                            EncryptionAgent agent;
+                            switch (item.Algorithm)
+                            {
+                                default:
+                                    agent = new AesAgent(password);
+                                    break;
+                            }
+                            string clearText = agent.decrypt(item.Value);
+                            DialogResult result = MessageBox.Show(clearText + 
+                                "\nWould you like to copy to the clipboard?", "Decrypted Key", 
+                                MessageBoxButtons.YesNo);
+                            if (result.Equals(DialogResult.Yes))
+                            {
+                                Clipboard.SetText(clearText);
+                            }
+                        }
+                        break;
+                    case NodeType.Cipher:
+                        //The node is a password so decrypt the key and use that
+                        if (password == null)
+                        {
+                            SetPassword setPass = new SetPassword();
+                            DialogResult passResult = setPass.ShowDialog();
+                            if (passResult.Equals(DialogResult.OK))
+                            {
+                                password = setPass.getPassword();
+                            }
+                        }
+                        if (password != null)
+                        {
+                            AesAgent aes = new AesAgent(password);
+                            //Get the parent item
+                            TreeItem keyItem = (TreeItem)itemTree.SelectedNode.Parent.Tag;
+                            string key = aes.decrypt(keyItem.Value);
+                            EncryptionAgent agent;
+                            switch (item.Algorithm)
+                            {
+                                default:
+                                    agent = new AesAgent(key);
+                                    break;
+                            }
+                            string clearText = agent.decrypt(item.Value);
+                            DialogResult result = MessageBox.Show(clearText +
+                                "\nWould you like to copy to the clipboard?",
+                                "Decrypted Value", MessageBoxButtons.YesNo);
+                            if (result.Equals(DialogResult.Yes))
+                            {
+                                Clipboard.SetText(clearText);
+                            }
+                        }
+                        break;
+                    case NodeType.Hash:
+                        //Check hash
+                        break;
+                //}
+                //if (item.Type.Equals(NodeType.Hash))
+                //{
+                //    //Check
+                //}
+                //else if (item.Type.Equals(NodeType.Cipher) || item.Type.Equals(NodeType.Key))
+                //{
+                //    if (password == null)
+                //    {
+                //        SetPassword setPass = new SetPassword();
+                //        DialogResult passResult = setPass.ShowDialog();
+                //        if (passResult.Equals(DialogResult.OK))
+                //        {
+                //            password = setPass.getPassword();
+                //        }
+                //    }
+                //    if (password != null)
+                //    {
+                //        EncryptionAgent agent;
+                //        switch (item.Algorithm)
+                //        {
+                //            default:
+                //                agent = new AesAgent(password);
+                //                break;
+                //        }
+                //        string clearText = agent.decrypt(item.Value);
+                //        MessageBox.Show(clearText + "\nWould you like to copy to the clipboard?", 
+                //            "Decrypted Value", MessageBoxButtons.YesNo);
+                //    }
+                }
+            }
+        }
+
         /// <summary>
         /// Handles the AfterSelect event of the itemTree control.  Controls which controls are active.
         /// </summary>
@@ -198,6 +305,9 @@ namespace Encryption_Station
                         addKeyToolStripMenuItem.Enabled = true;
                         addHashToolStripMenuItem.Enabled = true;
                         addEncryptedToolStripMenuItem.Enabled = false;
+                        //View delete menu items
+                        viewToolStripMenuItem.Enabled = false;
+                        deleteToolStripMenuItem.Enabled = false;
                         //Edit menu item
                         editItemToolStripMenuItem.Enabled = false;
                         break;
@@ -346,6 +456,11 @@ namespace Encryption_Station
         private void addEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             addCrypt();
+        }
+
+        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            viewCheck();
         }
     }
 }

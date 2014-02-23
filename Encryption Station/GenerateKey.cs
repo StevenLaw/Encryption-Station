@@ -31,6 +31,7 @@ namespace Encryption_Station
             return new TreeItem()
             {
                 Title = titleTxt.Text,
+                Algorithm = "Aes",
                 Length = (int)lengthNUD.Value,
                 Value = key,
                 Type = NodeType.Key
