@@ -47,7 +47,7 @@
             0});
             this.lengthNUD.Name = "lengthNUD";
             this.lengthNUD.Size = new System.Drawing.Size(120, 20);
-            this.lengthNUD.TabIndex = 0;
+            this.lengthNUD.TabIndex = 1;
             this.lengthNUD.Value = new decimal(new int[] {
             24,
             0,
@@ -98,7 +98,7 @@
             this.titleTxt.Location = new System.Drawing.Point(15, 29);
             this.titleTxt.Name = "titleTxt";
             this.titleTxt.Size = new System.Drawing.Size(316, 20);
-            this.titleTxt.TabIndex = 7;
+            this.titleTxt.TabIndex = 0;
             // 
             // GenerateKey
             // 

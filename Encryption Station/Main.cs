@@ -25,13 +25,26 @@ namespace Encryption_Station
         /// Create a new file
         /// </summary>
         private void newFile()
-        {   
+        {
+            //Make sure that the user wants to 
+            if (changed)
+            {
+                DialogResult saveResult = MessageBox.Show("Do you want to save your file before you close?",
+                    "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (saveResult.Equals(DialogResult.Yes))
+                    save();
+                else if (saveResult.Equals(DialogResult.Cancel))
+                    return;
+            }
             SaveFileDialog newFile = new SaveFileDialog();
             newFile.Filter = "Xml Files (*.xml)|*.xml|Encryption Station Files (*.exs)|*.exs|All Files|"  +
                 "*.*";
+            newFile.FilterIndex = 2;
             DialogResult result = newFile.ShowDialog();
             if (result.Equals(DialogResult.OK))
             {
+                //Set the file open
+                setFileOpen(true);
                 //Enable the TreeView
                 itemTree.Enabled = true;
                 //genKeyButton.Enabled = true;
@@ -53,6 +66,20 @@ namespace Encryption_Station
             }
         }
 
+        /// <summary>
+        /// Sets the enabled status of some of the file menu options.
+        /// </summary>
+        /// <param name="fileOpen">the boolean value to set the enabled status to.</param>
+        private void setFileOpen(bool fileOpen)
+        {
+            saveToolStripMenuItem.Enabled = fileOpen;
+            saveAsToolStripMenuItem.Enabled = fileOpen;
+            closeToolStripMenuItem.Enabled = fileOpen;
+        }
+
+        /// <summary>
+        /// Adds a hash to the <see cref="TreeView"/>.
+        /// </summary>
         private void addHash()
         {
             AddHash addHash = new AddHash();
@@ -288,6 +315,9 @@ namespace Encryption_Station
         {
             XmlHelper xml = new XmlHelper(filename);
             xml.createFile(itemTree.Nodes[0]);
+
+            //Indicate that the file has been changed.
+            changed = false;
         }
 
         /// <summary>
@@ -467,17 +497,51 @@ namespace Encryption_Station
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            save();
+            if (filename != null)
+                save();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            save();
+            if (filename != null)
+            {
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.Filter = "Xml Files (*.xml)|*.xml|Encryption Station Files (*.exs)|*.exs|All Files|" +
+                    "*.*";
+                saveFile.FilterIndex = 2;
+                DialogResult result = saveFile.ShowDialog();
+                if (result.Equals(DialogResult.OK))
+                {
+                    filename = saveFile.FileName;
+                    TreeItem item = (TreeItem) itemTree.Nodes[0].Tag;
+                    FileInfo fileInfo = new FileInfo(filename);
+                    item.Title = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                    save();
+                }
+            }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             deleteNode();
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (changed)
+            {
+                DialogResult result = MessageBox.Show("Do you want to save your file before you close?",
+                    "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result.Equals(DialogResult.Yes))
+                    save();
+                else if (result.Equals(DialogResult.Cancel))
+                    return;
+            }
+            //Set the file open
+            setFileOpen(false);
+            filename = null;
+            itemTree.Nodes.Clear();
+            changed = false;
         }
     }
 }

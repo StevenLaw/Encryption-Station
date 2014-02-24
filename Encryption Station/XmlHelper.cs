@@ -7,6 +7,9 @@ using System.Xml;
 
 namespace Encryption_Station
 {
+    /// <summary>
+    /// Simplifies the reading and writing of nodes between <see cref="TreeView"/> and an Xml file.
+    /// </summary>
     class XmlHelper
     {
         public string Filename { get; private set; }
@@ -20,19 +23,33 @@ namespace Encryption_Station
         {
             Filename = filename;
             document = new XmlDocument();
+            XmlDeclaration dec = document.CreateXmlDeclaration("1.0", null, null);
+            document.AppendChild(dec);
         }
 
+        /// <summary>
+        /// Creates the file and writes it to the file name that was set in the constructor.
+        /// </summary>
+        /// <param name="root">The root.</param>
         public void createFile(TreeNode root)
         {
             TreeItem rootItem = (TreeItem)root.Tag;
             XmlElement element = document.CreateElement("Root");
-            element.InnerText = rootItem.Value;
+            element.SetAttribute("Title", rootItem.Title);
+            document.AppendChild(element);
             foreach (TreeNode n in root.Nodes)
             {
                 addNode(n, element);
             }
+            document.Save(Filename);
         }
 
+        /// <summary>
+        /// Adds the nodes recursively to the parent element.  The root is done seperately because it has 
+        /// to be added to the document and not an <see cref="XmlElement"/>.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <param name="parent">The parent.</param>
         private void addNode(TreeNode node, XmlElement parent){
             XmlElement element = addValues((TreeItem)node.Tag);
             parent.AppendChild(element);
@@ -42,6 +59,12 @@ namespace Encryption_Station
             }
         }
 
+        /// <summary>
+        /// Adds the values from the tree item to an <see cref="XmlElement"/> and returns it.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>The <see cref="XmlElement"/> that contains the values.</returns>
+        /// <exception cref="System.Exception">Bad node type.</exception>
         private XmlElement addValues(TreeItem item)
         {
             XmlElement node;
@@ -60,7 +83,7 @@ namespace Encryption_Station
                     throw new Exception("Bad node type.");
             }
             
-            node.InnerText = item.Value;
+            node.SetAttribute("Value", item.Value);
             if (item.Title != null)
                 node.SetAttribute("Title", item.Title);
             if (item.Algorithm != null)

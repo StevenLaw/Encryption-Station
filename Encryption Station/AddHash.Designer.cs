@@ -75,6 +75,7 @@
             // 
             // algorithmCmb
             // 
+            this.algorithmCmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.algorithmCmb.FormattingEnabled = true;
             this.algorithmCmb.Items.AddRange(new object[] {
             "SHA1",

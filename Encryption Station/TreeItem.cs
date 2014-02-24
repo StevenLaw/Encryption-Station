@@ -14,8 +14,8 @@ namespace Encryption_Station
         public string Title { get; set; }
         public string Algorithm { get; set; }
         public int WorkFactor { get; set; }
-        public int Length { get; set; }
         public int SaltSize { get; set; }
+        public int Length { get; set; }
         public string Value { get; set; }
         public NodeType Type { get; set; }
         public string Text { 
@@ -43,6 +43,8 @@ namespace Encryption_Station
                     text += " Algorithm: " + Algorithm;
                 if (WorkFactor != 0)
                     text += " Work Factor: " + WorkFactor;
+                if (SaltSize != 0)
+                    text += " Salt Size: " + SaltSize;
                 if (Length != 0)
                     text += " Length: " + Length.ToString();
                 if (Value != null && !Value.Equals(""))
