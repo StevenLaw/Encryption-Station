@@ -513,9 +513,13 @@ namespace Encryption_Station
                 if (result.Equals(DialogResult.OK))
                 {
                     filename = saveFile.FileName;
-                    TreeItem item = (TreeItem) itemTree.Nodes[0].Tag;
                     FileInfo fileInfo = new FileInfo(filename);
-                    item.Title = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                    string newTitle = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                    TreeItem item = (TreeItem)itemTree.Nodes[0].Tag;
+                    item.Title = newTitle;
+                    itemTree.Nodes[0].Tag = item;
+                    itemTree.Nodes[0].Text = newTitle;
+                    
                     save();
                 }
             }
