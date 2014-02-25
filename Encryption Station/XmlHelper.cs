@@ -96,5 +96,41 @@ namespace Encryption_Station
                 node.SetAttribute("Length", item.Length.ToString());
             return node;
         }
+
+        /// <summary>
+        /// Loads the file.
+        /// </summary>
+        /// <returns>An Xml document containing the file contents.</returns>
+        /// <remarks>I really wanted to load the TreeView in here but I couldn't find a separate view model 
+        /// for the TreeView</remarks>
+        public XmlDocument loadFile()
+        {
+            document = new XmlDocument();
+            document.Load(Filename);
+            return document;
+        }
+
+        /// <summary>
+        /// Extracts the values from the node's atributes and inserts them into a <see cref="TreeItem"/>.
+        /// </summary>
+        /// <param name="node">The node to extract from.</param>
+        /// <returns>The treeItem</returns>
+        public TreeItem extractValues(XmlNode node)
+        {
+            TreeItem item = new TreeItem();
+            if (node.Attributes["Title"] != null)
+                item.Title = node.Attributes["Title"].Value;
+            if (node.Attributes["Value"] != null)
+                item.Value = node.Attributes["Value"].Value;
+            if (node.Attributes["Algorithm"] != null)
+                item.Algorithm = node.Attributes["Algorithm"].Value;
+            if (node.Attributes["WorkFactor"] != null)
+                item.WorkFactor = Convert.ToInt32(node.Attributes["WorkFactor"].Value);
+            if (node.Attributes["SaltSize"] != null)
+                item.SaltSize = Convert.ToInt32(node.Attributes["SaltSize"].Value);
+            if (node.Attributes["Length"] != null)
+                item.Length = Convert.ToInt32(node.Attributes["Length"].Value);
+            return item;
+        }
     }
 }

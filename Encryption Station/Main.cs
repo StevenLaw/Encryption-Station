@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Encryption_Station
 {
@@ -47,7 +48,6 @@ namespace Encryption_Station
                 setFileOpen(true);
                 //Enable the TreeView
                 itemTree.Enabled = true;
-                //genKeyButton.Enabled = true;
                 itemTree.Nodes.Clear();
 
                 //Set the name of the document and add to tree
@@ -320,6 +320,45 @@ namespace Encryption_Station
             changed = false;
         }
 
+        private void open()
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Xml Files (*.xml)|*.xml|Encryption Station Files (*.exs)|*.exs|All Files|" +
+                "*.*";
+            openFile.FilterIndex = 2;
+            DialogResult result = openFile.ShowDialog();
+            filename = openFile.FileName;
+
+            try
+            {
+                XmlHelper xml = new XmlHelper(filename);
+                XmlDocument doc = xml.loadFile();
+
+                itemTree.Nodes.Clear();
+                XmlNode root = doc.ChildNodes[1];
+                TreeItem rootItem = xml.extractValues(root);
+                TreeNode node = new TreeNode(rootItem.Text);
+                node.Tag = rootItem;
+                itemTree.Nodes.Add(node);
+                
+
+                //Set the file open
+                setFileOpen(true);
+                //Enable the TreeView
+                itemTree.Enabled = true;
+
+            }
+            catch (XmlException xmlEx)
+            {
+                MessageBox.Show(xmlEx.Message, "Xml Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Miscelaneous Error", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning);
+            }
+        }
+
         /// <summary>
         /// Handles the AfterSelect event of the itemTree control.  Controls which controls are active.
         /// </summary>
@@ -532,6 +571,8 @@ namespace Encryption_Station
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Make sure that if the file has changed that the user is okay with losing progress or has an 
+            //opportunity to save first
             if (changed)
             {
                 DialogResult result = MessageBox.Show("Do you want to save your file before you close?",
@@ -541,11 +582,27 @@ namespace Encryption_Station
                 else if (result.Equals(DialogResult.Cancel))
                     return;
             }
-            //Set the file open
+            //Set the file closed
             setFileOpen(false);
             filename = null;
             itemTree.Nodes.Clear();
             changed = false;
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Make sure that if the file has changed that the user is okay with losing progress or has an 
+            //opportunity to save first
+            if (changed)
+            {
+                DialogResult result = MessageBox.Show("Do you want to save your file before you close?",
+                    "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result.Equals(DialogResult.Yes))
+                    save();
+                else if (result.Equals(DialogResult.Cancel))
+                    return;
+            }
+            open();
         }
     }
 }
