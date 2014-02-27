@@ -16,6 +16,7 @@ namespace Encryption_Station
         private string filename;
         private string password;
         private bool changed; // Keeps track of whether or not the file has changed.
+        private XmlHelper xml;
 
         public Main()
         {
@@ -313,7 +314,7 @@ namespace Encryption_Station
         /// </summary>
         private void save()
         {
-            XmlHelper xml = new XmlHelper(filename);
+            xml = new XmlHelper(filename);
             xml.createFile(itemTree.Nodes[0]);
 
             //Indicate that the file has been changed.
@@ -331,21 +332,23 @@ namespace Encryption_Station
 
             try
             {
-                XmlHelper xml = new XmlHelper(filename);
+                xml = new XmlHelper(filename);
                 XmlDocument doc = xml.loadFile();
 
                 itemTree.Nodes.Clear();
-                XmlNode root = doc.ChildNodes[1];
-                TreeItem rootItem = xml.extractValues(root);
-                TreeNode node = new TreeNode(rootItem.Text);
-                node.Tag = rootItem;
-                itemTree.Nodes.Add(node);
-                
+                XmlNode xmlRoot = doc.ChildNodes[1];
+                TreeItem rootItem = xml.extractValues(xmlRoot);
+                TreeNode treeNode = new TreeNode(rootItem.Text);
+                treeNode.Tag = rootItem;
+                itemTree.Nodes.Add(treeNode);
+
+                populateTree(xmlRoot.ChildNodes, treeNode);
 
                 //Set the file open
                 setFileOpen(true);
                 //Enable the TreeView
                 itemTree.Enabled = true;
+                changed = false;
 
             }
             catch (XmlException xmlEx)
@@ -356,6 +359,19 @@ namespace Encryption_Station
             {
                 MessageBox.Show(ex.Message, "Miscelaneous Error", MessageBoxButtons.OK, 
                     MessageBoxIcon.Warning);
+            }
+        }
+
+        public void populateTree(XmlNodeList xmlNodes, TreeNode root)
+        {
+            foreach (XmlNode xmlNode in xmlNodes)
+            {
+                TreeItem item = xml.extractValues(xmlNode);
+                TreeNode treeNode = new TreeNode(item.Text);
+                treeNode.Tag = item;
+                root.Nodes.Add(treeNode);
+
+                populateTree(xmlNode.ChildNodes, treeNode);
             }
         }
 
