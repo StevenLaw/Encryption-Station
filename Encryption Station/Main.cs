@@ -64,6 +64,8 @@ namespace Encryption_Station
                 itemTree.Nodes.Add(node);
                 //Set changed to true to indicate that the file has changed
                 changed = true;
+                setPasswordToolStripMenuItem.Enabled = true;
+                changePasswordToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -321,6 +323,9 @@ namespace Encryption_Station
             changed = false;
         }
 
+        /// <summary>
+        /// Opens a file.
+        /// </summary>
         private void open()
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -330,39 +335,51 @@ namespace Encryption_Station
             DialogResult result = openFile.ShowDialog();
             filename = openFile.FileName;
 
-            try
+            if (result.Equals(DialogResult.OK))
             {
-                xml = new XmlHelper(filename);
-                XmlDocument doc = xml.loadFile();
+                try
+                {
+                    xml = new XmlHelper(filename);
+                   XmlDocument doc = xml.loadFile();
 
-                itemTree.Nodes.Clear();
-                XmlNode xmlRoot = doc.ChildNodes[1];
-                TreeItem rootItem = xml.extractValues(xmlRoot);
-                TreeNode treeNode = new TreeNode(rootItem.Text);
-                treeNode.Tag = rootItem;
-                itemTree.Nodes.Add(treeNode);
+                    itemTree.Nodes.Clear();
+                    XmlNode xmlRoot = doc.ChildNodes[1];
+                    TreeItem rootItem = xml.extractValues(xmlRoot);
+                    TreeNode treeNode = new TreeNode(rootItem.Text);
+                    treeNode.Tag = rootItem;
+                    itemTree.Nodes.Add(treeNode);
 
-                populateTree(xmlRoot.ChildNodes, treeNode);
+                    //Recursively navigate the xml tree and populate the tree view
+                    populateTree(xmlRoot.ChildNodes, treeNode);
 
-                //Set the file open
-                setFileOpen(true);
-                //Enable the TreeView
-                itemTree.Enabled = true;
-                changed = false;
+                    //Set the file open
+                    setFileOpen(true);
+                    //Enable the TreeView
+                    itemTree.Enabled = true;
+                    changed = false;
 
-            }
-            catch (XmlException xmlEx)
-            {
-                MessageBox.Show(xmlEx.Message, "Xml Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Miscelaneous Error", MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
+                    itemTree.ExpandAll();
+                    setPasswordToolStripMenuItem.Enabled = true;
+                    changePasswordToolStripMenuItem.Enabled = true;
+                }
+                catch (XmlException xmlEx)
+                {
+                    MessageBox.Show(xmlEx.Message, "Xml Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Miscelaneous Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
         }
 
-        public void populateTree(XmlNodeList xmlNodes, TreeNode root)
+        /// <summary>
+        /// Populates the tree.
+        /// </summary>
+        /// <param name="xmlNodes">The XML nodes use for populating the tree.</param>
+        /// <param name="root">The root tree node to add new nodes to.</param>
+        private void populateTree(XmlNodeList xmlNodes, TreeNode root)
         {
             foreach (XmlNode xmlNode in xmlNodes)
             {
@@ -519,9 +536,21 @@ namespace Encryption_Station
         {
             SetPassword setPass = new SetPassword();
             DialogResult passResult = setPass.ShowDialog();
+            TreeItem root = (TreeItem)itemTree.Nodes[0].Tag;
+            BCryptAgent bca = new BCryptAgent();
+            string salt = bca.generateSalt(12);
             if (passResult.Equals(DialogResult.OK))
             {
-                password = setPass.getPassword();
+                if (root.Password != null && bca.checkHash(setPass.getPassword(), root.Password))
+                    password = setPass.getPassword();
+                else if (root.Password == null)
+                {
+                    root.Password = bca.createHash(setPass.getPassword());
+                    changed = true;
+                }
+                else
+                    MessageBox.Show("That password does not match the one that is on record.", "Password error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -603,6 +632,8 @@ namespace Encryption_Station
             filename = null;
             itemTree.Nodes.Clear();
             changed = false;
+            setPasswordToolStripMenuItem.Enabled = true;
+            changePasswordToolStripMenuItem.Enabled = true;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)

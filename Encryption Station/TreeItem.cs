@@ -17,6 +17,7 @@ namespace Encryption_Station
         public int SaltSize { get; set; }
         public int Length { get; set; }
         public string Value { get; set; }
+        public string Password { get; set; }
         public NodeType Type { get; set; }
         public string Text { 
             get

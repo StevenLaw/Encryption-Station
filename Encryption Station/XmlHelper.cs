@@ -36,6 +36,8 @@ namespace Encryption_Station
             TreeItem rootItem = (TreeItem)root.Tag;
             XmlElement element = document.CreateElement("Root");
             element.SetAttribute("Title", rootItem.Title);
+            if (rootItem.Password != null)
+                element.SetAttribute("Password", rootItem.Password);
             document.AppendChild(element);
             foreach (TreeNode n in root.Nodes)
             {
@@ -130,6 +132,23 @@ namespace Encryption_Station
                 item.SaltSize = Convert.ToInt32(node.Attributes["SaltSize"].Value);
             if (node.Attributes["Length"] != null)
                 item.Length = Convert.ToInt32(node.Attributes["Length"].Value);
+            if (node.Attributes["Password"] != null)
+                item.Algorithm = node.Attributes["Password"].Value;
+            switch(node.Name)
+            {
+                case ("Root"):
+                    item.Type = NodeType.Root;
+                    break;
+                case ("Key"):
+                    item.Type = NodeType.Key;
+                    break;
+                case ("Hash"):
+                    item.Type = NodeType.Hash;
+                    break;
+                case ("Cipher"):
+                    item.Type = NodeType.Cipher;
+                    break;
+            }
             return item;
         }
     }

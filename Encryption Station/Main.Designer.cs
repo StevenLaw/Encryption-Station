@@ -258,6 +258,7 @@
             // 
             // setPasswordToolStripMenuItem
             // 
+            this.setPasswordToolStripMenuItem.Enabled = false;
             this.setPasswordToolStripMenuItem.Name = "setPasswordToolStripMenuItem";
             this.setPasswordToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.setPasswordToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
@@ -266,6 +267,7 @@
             // 
             // changePasswordToolStripMenuItem
             // 
+            this.changePasswordToolStripMenuItem.Enabled = false;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.P)));
