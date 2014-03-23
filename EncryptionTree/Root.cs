@@ -7,40 +7,57 @@ namespace EncryptionTree
 {
     public class Root : CryptTreeItem
     {
-        public string Password
+        private string password;
+
+        public override string Text
         {
-            get
+            get 
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return Title + " File";
             }
         }
 
-        public bool changePassword(string oldPassword, string newPassword)
+        public Root(string title, string password)
         {
-            throw new System.NotImplementedException();
+            Title = title;
+            BCryptAgent bca = new BCryptAgent();
+            string salt = bca.generateSalt(12);
+            this.password = bca.createHash(password, salt);
+            Type = NodeType.Root;
+        }
+
+        public bool changePassword(string newPassword)
+        {
+            BCryptAgent bca = new BCryptAgent();
+            if (bca.checkHash(newPassword, password))
+            {
+                string salt = bca.generateSalt(12);
+                password = bca.createHash(newPassword, salt);
+                return true;
+            }
+            else
+                return false;
         }
 
         public void addKey(Key key)
         {
-            throw new System.NotImplementedException();
+            Children.Add(key);
         }
 
         public void addHash(Hash hash)
         {
-            throw new System.NotImplementedException();
+            Children.Add(hash);
         }
 
         public void addHash(FileHash hash)
         {
-            throw new System.NotImplementedException();
+            Children.Add(hash);
         }
 
-        public override string Text
+        public bool checkPassword(string password)
         {
-            get { throw new NotImplementedException(); }
+            BCryptAgent bca = new BCryptAgent();
+            return bca.checkHash(password, this.password);
         }
     }
 }

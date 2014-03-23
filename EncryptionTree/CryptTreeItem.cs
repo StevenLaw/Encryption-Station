@@ -67,5 +67,10 @@ namespace EncryptionTree
         {
             return this.GetEnumerator();
         }
+
+        public void move(int oldIndex, int newIndex)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

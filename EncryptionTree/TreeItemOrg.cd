@@ -42,6 +42,7 @@
     <Position X="7.25" Y="0.5" Width="1.5" />
     <Members>
       <Method Name="System.Collections.IEnumerable.GetEnumerator" Hidden="true" />
+      <Property Name="this" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAFCACAIEAAAAgAAAAAAAAQAgCAIBAAA=</HashCode>
