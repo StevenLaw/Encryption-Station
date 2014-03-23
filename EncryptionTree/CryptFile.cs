@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml;
 
 namespace EncryptionTree
 {
     public class CryptFile : CryptTreeItem
     {
-        public CryptFile(string title, string filename, CryptAlgorithm algorithm, string key)
+        private EncryptionAgent agent;
+
+        /// <summary>
+        /// Returns the Text output of the node.
+        /// </summary>
+        public override string Text
+        {
+            get { throw new NotImplementedException(); }
+        }
+        public CryptFile(string title, string filename, CryptAlgorithm algorithm, string key) : base()
         {
             throw new System.NotImplementedException();
         }
@@ -29,11 +39,9 @@ namespace EncryptionTree
             throw new System.NotImplementedException();
         }
 
-        public override string Text
+        public override XmlNode createXmlNode()
         {
-            get { throw new NotImplementedException(); }
+            throw new NotImplementedException();
         }
-
-        private EncryptionAgent agent;
     }
 }

@@ -3,47 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml;
 
 namespace EncryptionTree
 {
     public class FileHash : CryptTreeItem
     {
-        public FileHash(string title, string filename, HashAlType algorithm, int saltGen)
+        private HashingAgent agent;
+
+        public HashAlType Algorithm { get; set; }
+
+        public int SaltSize { get; set; }
+
+        public int WorkFactor { get; set; }
+
+        public string FileName { get; set; }
+
+        /// <summary>
+        /// Returns the Text output of the node.
+        /// </summary>
+        public override string Text
         {
-            throw new System.NotImplementedException();
-        }
-    
-        public HashAlType Algorithm
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get { throw new NotImplementedException(); }
         }
 
-        public int SaltSize
+        
+        public FileHash(string title, string filename, HashAlType algorithm, int saltGen) : base()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public int WorkFactor
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            Title = title;
+            FileName = filename;
+            Algorithm = algorithm;
+            if (algorithm == HashAlType.BCrypt)
+                WorkFactor = saltGen;
+            else
+                SaltSize = saltGen;
+            // TODO generate file hash and set to Value
         }
 
         public bool checkHash(string filename)
@@ -51,11 +45,9 @@ namespace EncryptionTree
             throw new System.NotImplementedException();
         }
 
-        public override string Text
+        public override XmlNode createXmlNode()
         {
-            get { throw new NotImplementedException(); }
+            throw new NotImplementedException();
         }
-
-        private HashingAgent agent;
     }
 }

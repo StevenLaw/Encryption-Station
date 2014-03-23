@@ -2,47 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace EncryptionTree
 {
     public class Hash : CryptTreeItem
     {
-        public Hash(string title, string clearText, HashAlType algorithm, int saltGen)
+        private HashingAgent agent;
+
+        public HashAlType Algorithm { get; set; }
+
+        public int SaltSize { get; set; }
+
+        public int WorkFactor { get; set; }
+
+        /// <summary>
+        /// Returns the Text output of the node.
+        /// </summary>
+        public override string Text
         {
-            throw new System.NotImplementedException();
-        }
-    
-        public HashAlType Algorithm
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get { throw new NotImplementedException(); }
         }
 
-        public int SaltSize
+        public Hash(string title, string clearText, HashAlType algorithm, int saltGen) : base()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+            Title = title;
+            Algorithm = algorithm;
+            if (algorithm == HashAlType.BCrypt)
+                WorkFactor = saltGen;
+            else
+                SaltSize = saltGen;
 
-        public int WorkFactor
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            // TODO Generate hash and set to Value
         }
 
         public bool checkHash(string clearText)
@@ -50,11 +41,11 @@ namespace EncryptionTree
             throw new System.NotImplementedException();
         }
 
-        public override string Text
-        {
-            get { throw new NotImplementedException(); }
-        }
 
-        private int agent;
+
+        public override XmlNode createXmlNode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

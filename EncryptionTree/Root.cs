@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace EncryptionTree
 {
     public class Root : CryptTreeItem
     {
-        private string password;
-
+        /// <summary>
+        /// Returns the Text output of the node.
+        /// </summary>
         public override string Text
         {
             get 
@@ -17,26 +19,21 @@ namespace EncryptionTree
             }
         }
 
-        public Root(string title, string password)
+        public Root(string title, string password) : base()
         {
             Title = title;
             BCryptAgent bca = new BCryptAgent();
             string salt = bca.generateSalt(12);
-            this.password = bca.createHash(password, salt);
+            Value = bca.createHash(password, salt);
             Type = NodeType.Root;
         }
 
-        public bool changePassword(string newPassword)
+        public void changePassword(string newPassword)
         {
             BCryptAgent bca = new BCryptAgent();
-            if (bca.checkHash(newPassword, password))
-            {
-                string salt = bca.generateSalt(12);
-                password = bca.createHash(newPassword, salt);
-                return true;
-            }
-            else
-                return false;
+            string salt = bca.generateSalt(12);
+            Value = bca.createHash(newPassword, salt);
+            
         }
 
         public void addKey(Key key)
@@ -57,7 +54,12 @@ namespace EncryptionTree
         public bool checkPassword(string password)
         {
             BCryptAgent bca = new BCryptAgent();
-            return bca.checkHash(password, this.password);
+            return bca.checkHash(password, Value);
+        }
+
+        public override XmlNode createXmlNode()
+        {
+            throw new NotImplementedException();
         }
     }
 }
