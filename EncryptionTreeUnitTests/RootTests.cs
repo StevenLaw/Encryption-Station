@@ -39,6 +39,7 @@ namespace EncryptionTreeUnitTests
             bool result = root.checkPassword(newPassword);
             Assert.IsTrue(result, "The password did not match.");
         }
+        // TODO Test if the child Crypt nodes were re-encrypted.
         [TestMethod]
         public void Root_checkPassword_ValidPassword() 
         {
