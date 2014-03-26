@@ -6,6 +6,9 @@ using System.Xml;
 
 namespace EncryptionTree
 {
+    /// <summary>
+    /// The root node of the tree.
+    /// </summary>
     public class Root : CryptTreeItem
     {
         /// <summary>
@@ -20,7 +23,8 @@ namespace EncryptionTree
         {
             get 
             {
-                return Title + " File";
+
+                return Title + ": File";
             }
         }
 
@@ -48,7 +52,13 @@ namespace EncryptionTree
         public void changePassword(string newPassword)
         {
             BCryptAgent bca = new BCryptAgent();
-            // TODO re-encrypt child crypt items
+            foreach (CryptTreeItem item in this) {
+                if (item.Type == NodeType.Key)
+                {
+                    Key key = (Key)item;
+                    key.changePassword(newPassword);
+                }
+            }
             string salt = bca.generateSalt(12);
             Value = bca.createHash(newPassword, salt);
             

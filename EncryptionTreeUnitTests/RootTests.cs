@@ -21,7 +21,7 @@ namespace EncryptionTreeUnitTests
             // assert
             Assert.AreEqual(title, root.Title, false, "The title is not correct.");
             Assert.AreEqual(expectedType, root.Type, "The type is different.");
-            string expectedText = "Filename File";
+            string expectedText = "Filename: File";
             Assert.AreEqual(expectedText, root.Text, "The text was output incorrectly");
         }
         [TestMethod]
@@ -112,7 +112,7 @@ namespace EncryptionTreeUnitTests
             Assert.IsTrue((finalCount > initialCount), "The final count was not greater than the initial count.");
         }
         [TestMethod]
-        public void root_CreateXmlNode()
+        public void Root_CreateXmlNode()
         {
             // arrange
             Root root = new Root("Title", "Password");

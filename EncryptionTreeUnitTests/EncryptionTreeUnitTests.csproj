@@ -51,6 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CryptTreeItemTests.cs" />
+    <Compile Include="KeyTests.cs" />
     <Compile Include="RootTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
