@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AesAgent.cs" />
+    <Compile Include="BadSaltGenException.cs" />
     <Compile Include="BCryptAgent.cs" />
     <Compile Include="CryptAlgorithm.cs" />
     <Compile Include="CryptFile.cs" />
