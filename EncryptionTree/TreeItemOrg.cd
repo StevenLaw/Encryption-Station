@@ -13,28 +13,28 @@
   <Class Name="EncryptionTree.CryptText">
     <Position X="3.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAACAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAEIAAAAAAAAAAAAAACAQAAAA=</HashCode>
       <FileName>CryptTextItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EncryptionTree.Key">
     <Position X="2" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAECAAAAAAQAAAAAAAAAAAAAAAAAAAAAACgAAAAA=</HashCode>
+      <HashCode>AAAAAECAAAAAAQAAAAAAAIBAAAAAAAABAAAACAAAAAA=</HashCode>
       <FileName>Key.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EncryptionTree.Hash">
     <Position X="9" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABIQAAAAAAAAAAAAAAAAAAAAAACARAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABIQAAAAAAAIAAAAAAAAAAAAAACARAAAA=</HashCode>
       <FileName>Hash.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EncryptionTree.CryptFile">
     <Position X="5.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAACAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAEIAAAAAAAAAAAAAACAQAAAA=</HashCode>
       <FileName>CryptFile.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
       <Property Name="this" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAFCACAIEAAQAgAAAAAAAAQAgCAIBAAA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAFCECAIEAIQAgAAAAAAAAQAgCAIBAAA=</HashCode>
       <FileName>CryptTreeItem.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -53,27 +53,27 @@
   <Class Name="EncryptionTree.Root">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAiAAAAAAAAAAAAAAAAAABAAAAAAAAAACgAAAAA=</HashCode>
+      <HashCode>gAAAAAiAAAAAAAAAAAAAAIAAABAAAAAAAAAACgAAAAA=</HashCode>
       <FileName>Root.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EncryptionTree.FileHash">
     <Position X="7.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABIQAAAAAAAAAAAAAAAAAAAAAACARAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABIQAAAAAAAIAAAAAAAAAAAAAACARAAAA=</HashCode>
       <FileName>FileHash.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EncryptionTree.AesAgent" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAgAAAAAAAAEEAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAgAAAAAAAAEEAIAAAAAAAgAAEAAAAAAAAA=</HashCode>
       <FileName>AesAgent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EncryptionTree.BCryptAgent" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.75" Y="9" Width="1.5" />
+    <Position X="7.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAIAAAAAAAAAAACAAAA=</HashCode>
       <FileName>BCryptAgent.cs</FileName>
@@ -81,7 +81,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EncryptionTree.MD5Agent" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2" Y="10" Width="1.5" />
+    <Position X="5.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAIAAAAIAAAAAAAAAAACAAEA=</HashCode>
       <FileName>MD5Agent.cs</FileName>
@@ -89,22 +89,30 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="EncryptionTree.ShaAgent" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.75" Y="10" Width="1.5" />
+    <Position X="7.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAIAAAAIAAAAAAAAAAACAAEA=</HashCode>
       <FileName>ShaAgent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="EncryptionTree.DesAgent" Collapsed="true">
+    <Position X="2" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAgAAAAAAAAEEAIAAAAAAAgAAEAAAAAAAAA=</HashCode>
+      <FileName>DesAgent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="EncryptionTree.EncryptionAgent" Collapsed="true">
-    <Position X="5.5" Y="9" Width="1.5" />
+    <Position X="9" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EncryptionAgent.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="EncryptionTree.HashingAgent" Collapsed="true">
-    <Position X="7.25" Y="9" Width="1.5" />
+    <Position X="9" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAIAAAAAAAAAAACAAAA=</HashCode>
       <FileName>HashingAgent.cs</FileName>

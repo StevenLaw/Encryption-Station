@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace EncryptionTree
 {
-    public sealed class AesAgent : EncryptionAgent
+    public sealed class DesAgent : EncryptionAgent
     {
         private const int keySize = 32;
         private const int IVSize = 16;
@@ -18,13 +19,13 @@ namespace EncryptionTree
         /// Initializes the class with the key
         /// </summary>
         /// <param name="key">The key to be used for encryption and decryption</param>
-        public AesAgent(string key)
+        public DesAgent(string key)
         {
             this.key = key;
         }
 
         /// <summary>
-        /// Encrypts the clear text using AES using the key set in the objects creation.
+        /// Encrypts the clear text using AES with encryptionKey as the key.
         /// </summary>
         /// <param name="clearText">The text to be encrypted.</param>
         /// <returns>The encrypted text.</returns>
@@ -32,7 +33,7 @@ namespace EncryptionTree
         {
             Byte[] clearBytes = Encoding.UTF8.GetBytes(clearText);
             string result;
-            using (Aes encryptor = Aes.Create())
+            using (DES encryptor = DES.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(key, new Byte[] {0x49, 0x76, 0x61, 
                     0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
@@ -50,12 +51,12 @@ namespace EncryptionTree
         }
 
         /// <summary>
-        /// Encrypts the file using AES with encryptionKey using the key set in the objects creation.
+        /// Encrypts the file using DES with encryptionKey using the key set in the objects creation.
         /// </summary>
         /// <param name="filename">The filename.</param>
         public void encryptFile(string filename)
         {
-            using (Aes encryptor = Aes.Create())
+            using (DES encryptor = DES.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(key, new Byte[] {0x49, 0x76, 0x61, 
                         0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
@@ -84,7 +85,7 @@ namespace EncryptionTree
         {
             Byte[] cipherBytes = Convert.FromBase64String(cipherText);
             string result;
-            using (Aes encryptor = Aes.Create())
+            using (DES encryptor = DES.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(key, new Byte[] {0x49, 0x76, 0x61, 
                     0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
@@ -104,12 +105,12 @@ namespace EncryptionTree
         }
 
         /// <summary>
-        /// Decrypts the file using AES with encryptionKey using the key set in the objects creation.
+        /// Decrypts the file using DES with encryptionKey using the key set in the objects creation.
         /// </summary>
         /// <param name="filename">The filename.</param>
         public void decryptFile(string filename)
         {
-            using (Aes encryptor = Aes.Create())
+            using (DES encryptor = DES.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(key, new Byte[] {0x49, 0x76, 0x61, 
                         0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
