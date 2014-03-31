@@ -8,5 +8,6 @@ namespace EncryptionTree
     public enum CryptAlgorithm
     {
         AES,
+        DES
     }
 }

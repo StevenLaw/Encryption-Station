@@ -18,10 +18,22 @@ namespace EncryptionTree
         string encrypt(string clearText);
 
         /// <summary>
+        /// Encrypts the file.
+        /// </summary>
+        /// <param name="filename">The name of the file to encrypt.</param>
+        void encryptFile(string filename);
+
+        /// <summary>
         /// Method to Decrypt the cipherText.
         /// </summary>
         /// <param name="cipherText">Text to be decrypted</param>
         /// <returns>The clearText</returns>
         string decrypt(string cipherText);
+
+        /// <summary>
+        /// Decrypts the file.
+        /// </summary>
+        /// <param name="filename">The name of the file to decrypt.</param>
+        void decryptFile(string filename);
     }
 }

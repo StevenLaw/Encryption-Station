@@ -117,7 +117,8 @@ namespace EncryptionTree
                 encryptor.Key = pdb.GetBytes(keySize);
                 encryptor.IV = pdb.GetBytes(IVSize);
                 using (FileStream fsInput = new FileStream(filename, FileMode.Open, FileAccess.Read),
-                    fsDecrypted = new FileStream(filename + ".enc", FileMode.Create, FileAccess.Write))
+                    fsDecrypted = new FileStream(filename.Substring(0, filename.Length - 3) + "dec", 
+                        FileMode.Create, FileAccess.Write))
                 {
                     using (CryptoStream cs = new CryptoStream(fsDecrypted, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
                     {

@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CryptTreeItemTests.cs" />
+    <Compile Include="EncryptionAgentTests.cs" />
     <Compile Include="HashTests.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="RootTests.cs" />
@@ -62,6 +63,10 @@
       <Project>{a6b8937e-fcd6-4c9d-bd25-c586c029508c}</Project>
       <Name>EncryptionTree</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFiles\DxDiagAesTest.txt" />
+    <Content Include="TestFiles\DxDiagDesTest.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
